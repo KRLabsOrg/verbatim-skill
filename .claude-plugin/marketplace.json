@@ -1,14 +1,14 @@
 {
-  "name": "verbatim-acl-marketplace",
-  "description": "Plugins for Verbatim RAG by KR Labs",
+  "name": "verbatim-marketplace",
+  "description": "Plugins for the Verbatim platform by KR Labs",
   "owner": {
     "name": "KR Labs"
   },
   "plugins": [
     {
-      "name": "verbatim-acl",
+      "name": "verbatim",
       "source": "./",
-      "description": "Search 90,000+ ACL Anthology papers and get verbatim cited answers."
+      "description": "Search and ask specialized document catalogs — get verbatim cited answers. Defaults to the ACL Anthology catalog."
     }
   ]
 }
