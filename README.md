@@ -2,9 +2,7 @@
 
 A [Claude Code plugin](https://code.claude.com/docs/en/plugins) for the [Verbatim platform](https://verbatim.krlabs.eu) — specialized document collections with verbatim, citation-grounded answers. Defaults to the **ACL Anthology** collection (90,000+ NLP/CL papers).
 
-Also includes a general-purpose **Verbatim Transform** — give it any question + context documents and get a verbatim, cited answer.
-
-> **Renamed from `verbatim-acl-skill`.** The plugin name moved from `verbatim-acl` to `verbatim`, so commands are now `/verbatim:search` and `/verbatim:transform`. Reinstall to update.
+Also includes a general-purpose **Verbatim Transform** — give it any question + context documents and get a verbatim, cited answer
 
 ## Install
 
