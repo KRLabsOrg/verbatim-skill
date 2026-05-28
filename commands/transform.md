@@ -1,4 +1,4 @@
-Turn any question + context documents into a verbatim answer with exact citations. Catalog-agnostic — works with any text you supply.
+Turn any question + context documents into a verbatim answer with exact citations. Collection-agnostic — works with any text you supply.
 
 Requires `VERBATIM_API_KEY` environment variable. Get one at https://verbatim.krlabs.eu/api-keys
 

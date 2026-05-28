@@ -1,6 +1,6 @@
 {
   "name": "verbatim",
-  "description": "Search and ask specialized document catalogs (ACL Anthology and more) — get verbatim cited answers via the Verbatim platform.",
+  "description": "Search and ask specialized document collections (ACL Anthology and more) — get verbatim cited answers via the Verbatim platform.",
   "version": "2.0.0",
   "author": {
     "name": "KR Labs",

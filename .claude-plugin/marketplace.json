@@ -8,7 +8,7 @@
     {
       "name": "verbatim",
       "source": "./",
-      "description": "Search and ask specialized document catalogs — get verbatim cited answers. Defaults to the ACL Anthology catalog."
+      "description": "Search and ask specialized document collections — get verbatim cited answers. Defaults to the ACL Anthology collection."
     }
   ]
 }

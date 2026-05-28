@@ -1,6 +1,6 @@
 # Verbatim Skill
 
-Search and query specialized document catalogs with verbatim, cited answers. Defaults to the **ACL Anthology** catalog (90,000+ papers). Also includes a general-purpose **Verbatim Transform** that turns any question + context into a cited, verbatim answer.
+Search and query specialized document collections with verbatim, cited answers. Defaults to the **ACL Anthology** collection (90,000+ papers). Also includes a general-purpose **Verbatim Transform** that turns any question + context into a cited, verbatim answer.
 
 ## Setup
 
@@ -13,7 +13,7 @@ export VERBATIM_API_KEY=vb_your_key_here
 
 ## Platform basics
 
-Verbatim is organized into **catalogs** — curated document collections. Every action endpoint accepts an optional `catalog_ids` parameter; omit it for ACL Anthology, or pass `?catalog_ids=other&catalog_ids=anthology` for cross-catalog queries when other catalogs are available.
+Verbatim is organized into **collections** — curated document collections. Every action endpoint accepts an optional `collection_ids` parameter; omit it for ACL Anthology, or pass `?collection_ids=other&collection_ids=anthology` for cross-collection queries when other collections are available.
 
 ## Endpoints
 
@@ -23,7 +23,7 @@ All requests require the header: `Authorization: Bearer $VERBATIM_API_KEY`
 
 ---
 
-### Verbatim Transform (catalog-agnostic)
+### Verbatim Transform (collection-agnostic)
 
 Turn any question + context documents into a verbatim answer with citations. Not limited to ACL papers — works with any text. Use this when you have your own documents/context and want a cited answer.
 
@@ -60,7 +60,7 @@ The response includes a verbatim answer where every claim is backed by a direct 
 
 ### Ask a Research Question (RAG query)
 
-Run RAG over the default catalog (anthology) and get a verbatim answer with citations.
+Run RAG over the default collection (anthology) and get a verbatim answer with citations.
 
 ```bash
 curl -s -X POST "https://verbatim.krlabs.eu/api/v1/query" \
@@ -72,11 +72,11 @@ curl -s -X POST "https://verbatim.krlabs.eu/api/v1/query" \
   }'
 ```
 
-Scope to a specific catalog (or multiple) with `catalog_ids`:
+Scope to a specific collection (or multiple) with `collection_ids`:
 ```json
 {
   "question": "What are recent advances in NER?",
-  "catalog_ids": ["anthology"],
+  "collection_ids": ["anthology"],
   "filter": "metadata[\"year\"] >= 2022",
   "hybrid_weights": {"full_text": 0.5, "dense": 0.5}
 }
@@ -89,10 +89,10 @@ Filter examples:
 
 ---
 
-### List Catalogs
+### List Collections
 
 ```bash
-curl -s "https://verbatim.krlabs.eu/api/v1/catalogs" \
+curl -s "https://verbatim.krlabs.eu/api/v1/collections" \
   -H "Authorization: Bearer $VERBATIM_API_KEY"
 ```
 
@@ -100,7 +100,7 @@ curl -s "https://verbatim.krlabs.eu/api/v1/catalogs" \
 
 ### Search Papers
 
-Search papers by keywords with optional year filter and catalog scope.
+Search papers by keywords with optional year filter and collection scope.
 
 ```bash
 curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention+mechanisms&limit=10" \
@@ -113,9 +113,9 @@ curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention&year=20
   -H "Authorization: Bearer $VERBATIM_API_KEY"
 ```
 
-Cross-catalog (when other catalogs exist) — repeat the query param:
+Cross-collection (when other collections exist) — repeat the query param:
 ```bash
-curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention&catalog_ids=anthology&catalog_ids=biorxiv" \
+curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention&collection_ids=anthology&collection_ids=biorxiv" \
   -H "Authorization: Bearer $VERBATIM_API_KEY"
 ```
 
@@ -191,4 +191,4 @@ curl -s "https://verbatim.krlabs.eu/api/v1/facets?field=year&limit=100" \
 - Queries may take a few seconds — they perform retrieval + LLM generation
 - Responses include verbatim citations with exact quotes from source documents
 - Use `jq` to parse JSON responses, e.g. `| jq '.answer'`
-- `catalog_ids` defaults to `["anthology"]` everywhere it's accepted
+- `collection_ids` defaults to `["anthology"]` everywhere it's accepted

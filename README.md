@@ -1,6 +1,6 @@
 # Verbatim Plugin
 
-A [Claude Code plugin](https://code.claude.com/docs/en/plugins) for the [Verbatim platform](https://verbatim.krlabs.eu) — specialized document catalogs with verbatim, citation-grounded answers. Defaults to the **ACL Anthology** catalog (90,000+ NLP/CL papers).
+A [Claude Code plugin](https://code.claude.com/docs/en/plugins) for the [Verbatim platform](https://verbatim.krlabs.eu) — specialized document collections with verbatim, citation-grounded answers. Defaults to the **ACL Anthology** collection (90,000+ NLP/CL papers).
 
 Also includes a general-purpose **Verbatim Transform** — give it any question + context documents and get a verbatim, cited answer.
 
@@ -40,33 +40,33 @@ export VERBATIM_API_KEY=vb_your_key_here
 
 | Command | Description |
 |---------|-------------|
-| `/verbatim:search` | Search catalog papers, ask research questions, browse authors/venues |
+| `/verbatim:search` | Search collection papers, ask research questions, browse authors/venues |
 | `/verbatim:transform` | Verbatim transform any question + context into a cited answer |
 
 ## Example Usage
 
-**Catalog search & research questions:**
+**Collection search & research questions:**
 - `/verbatim:search papers about transformer efficiency from 2023`
 - `/verbatim:search what does the research say about attention mechanisms?`
 
-**Verbatim Transform (catalog-agnostic):**
+**Verbatim Transform (collection-agnostic):**
 - `/verbatim:transform what are the main findings?` (with context provided)
 
 Or just ask Claude naturally — it will use the API endpoints from the skill.
 
-## Catalog scoping
+## Collection scoping
 
-Verbatim is organized into catalogs. The launch catalog is the ACL Anthology; more catalogs may be added. Every action endpoint accepts an optional `catalog_ids` parameter:
+Verbatim is organized into collections. The launch collection is the ACL Anthology; more collections may be added. Every action endpoint accepts an optional `collection_ids` parameter:
 
 - Omit it → defaults to `["anthology"]`
-- Single catalog: `?catalog_ids=anthology` (GET) or `{"catalog_ids": ["anthology"]}` (POST)
-- Multiple: `?catalog_ids=anthology&catalog_ids=biorxiv` or `{"catalog_ids": ["anthology", "biorxiv"]}`
+- Single collection: `?collection_ids=anthology` (GET) or `{"collection_ids": ["anthology"]}` (POST)
+- Multiple: `?collection_ids=anthology&collection_ids=biorxiv` or `{"collection_ids": ["anthology", "biorxiv"]}`
 
 ## Available Endpoints
 
 | Action | Endpoint | Quota |
 |--------|----------|-------|
-| List catalogs | `GET /api/v1/catalogs` | Free |
+| List collections | `GET /api/v1/collections` | Free |
 | Verbatim Transform (any context) | `POST /api/v1/transform/verbatim` | Counts |
 | Ask a research question (RAG) | `POST /api/v1/query` | Counts |
 | Search papers | `GET /api/v1/papers/search` | Free |
