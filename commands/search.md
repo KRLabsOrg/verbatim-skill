@@ -119,6 +119,13 @@ curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention&collect
   -H "Authorization: Bearer $VERBATIM_API_KEY"
 ```
 
+Include the matched chunks per paper (free — no LLM, no quota cost). Useful when you want the underlying evidence the ranking was built on:
+```bash
+curl -s "https://verbatim.krlabs.eu/api/v1/papers/search?query=attention&include_chunks=true&limit=5" \
+  -H "Authorization: Bearer $VERBATIM_API_KEY"
+```
+Each item in `items` then carries a `matched_chunks: [{text, score}, ...]` field listing every retrieved chunk that contributed to that paper's match.
+
 ---
 
 ### Get Paper Metadata
