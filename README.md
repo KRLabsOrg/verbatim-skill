@@ -1,27 +1,29 @@
-# Verbatim ACL Plugin
+# Verbatim Plugin
 
-A [Claude Code plugin](https://code.claude.com/docs/en/plugins) for querying 90,000+ academic papers from the [ACL Anthology](https://aclanthology.org/) via [Verbatim RAG](https://verbatim.krlabs.eu).
+A [Claude Code plugin](https://code.claude.com/docs/en/plugins) for the [Verbatim platform](https://verbatim.krlabs.eu) — specialized document collections with verbatim, citation-grounded answers. Defaults to the **ACL Anthology** collection (90,000+ NLP/CL papers).
 
 Also includes a general-purpose **Verbatim Transform** — give it any question + context documents and get a verbatim, cited answer.
+
+> **Renamed from `verbatim-acl-skill`.** The plugin name moved from `verbatim-acl` to `verbatim`, so commands are now `/verbatim:search` and `/verbatim:transform`. Reinstall to update.
 
 ## Install
 
 First add the marketplace:
 
 ```bash
-claude plugin marketplace add https://github.com/adaamko/verbatim-acl-skill
+claude plugin marketplace add https://github.com/KRLabsOrg/verbatim-skill
 ```
 
 Then install:
 
 ```bash
-claude plugin install verbatim-acl
+claude plugin install verbatim
 ```
 
 Or test locally without installing:
 
 ```bash
-claude --plugin-dir /path/to/verbatim-acl-skill
+claude --plugin-dir /path/to/verbatim-skill
 ```
 
 ## Setup
@@ -38,35 +40,44 @@ export VERBATIM_API_KEY=vb_your_key_here
 
 | Command | Description |
 |---------|-------------|
-| `/verbatim-acl:search` | Search ACL papers, ask research questions, browse authors/venues |
-| `/verbatim-acl:transform` | Verbatim transform any question + context into cited answers |
+| `/verbatim:search` | Search collection papers, ask research questions, browse authors/venues |
+| `/verbatim:transform` | Verbatim transform any question + context into a cited answer |
 
 ## Example Usage
 
-**ACL Paper Search:**
-- `/verbatim-acl:search papers about transformer efficiency from 2023`
-- `/verbatim-acl:search what does the research say about attention mechanisms?`
+**Collection search & research questions:**
+- `/verbatim:search papers about transformer efficiency from 2023`
+- `/verbatim:search what does the research say about attention mechanisms?`
 
-**Verbatim Transform:**
-- `/verbatim-acl:transform what are the main findings?` (with context provided)
+**Verbatim Transform (collection-agnostic):**
+- `/verbatim:transform what are the main findings?` (with context provided)
 
 Or just ask Claude naturally — it will use the API endpoints from the skill.
+
+## Collection scoping
+
+Verbatim is organized into collections. The launch collection is the ACL Anthology; more collections may be added. Every action endpoint accepts an optional `collection_ids` parameter:
+
+- Omit it → defaults to `["anthology"]`
+- Single collection: `?collection_ids=anthology` (GET) or `{"collection_ids": ["anthology"]}` (POST)
+- Multiple: `?collection_ids=anthology&collection_ids=biorxiv` or `{"collection_ids": ["anthology", "biorxiv"]}`
 
 ## Available Endpoints
 
 | Action | Endpoint | Quota |
 |--------|----------|-------|
-| Verbatim Transform (any context) | `POST /api/transform/verbatim` | Counts |
-| Ask a research question (ACL RAG) | `POST /api/query` | Counts |
-| Search papers | `GET /api/papers/search` | Free |
-| Get paper metadata | `GET /api/papers/{id}` | Free |
-| Get full paper content | `GET /api/papers/{id}/content` | Free |
-| Get BibTeX citation | `GET /api/papers/{id}/bibtex` | Free |
-| Browse authors/venues/years | `GET /api/facets` | Free |
+| List collections | `GET /api/v1/collections` | Free |
+| Verbatim Transform (any context) | `POST /api/v1/transform/verbatim` | Counts |
+| Ask a research question (RAG) | `POST /api/v1/query` | Counts |
+| Search papers | `GET /api/v1/papers/search` | Free |
+| Get paper metadata | `GET /api/v1/papers/{id}` | Free |
+| Get full paper content | `GET /api/v1/papers/{id}/content` | Free |
+| Get BibTeX citation | `GET /api/v1/papers/{id}/bibtex` | Free |
+| Browse authors/venues/years | `GET /api/v1/facets` | Free |
 
 ## Links
 
-- [Verbatim RAG](https://verbatim.krlabs.eu) — The service
+- [Verbatim platform](https://verbatim.krlabs.eu) — The service
 - [API Documentation](https://verbatim.krlabs.eu/docs) — Full API docs
 - [KR Labs](https://krlabs.eu) — Built by KR Labs
 - [Claude Code Plugins](https://code.claude.com/docs/en/plugins) — Plugin documentation

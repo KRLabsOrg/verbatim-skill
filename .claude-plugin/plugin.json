@@ -1,12 +1,12 @@
 {
-  "name": "verbatim-acl",
-  "description": "Search 90,000+ ACL Anthology papers and get verbatim cited answers. Also includes a general-purpose Verbatim Transform for any documents.",
-  "version": "1.0.0",
+  "name": "verbatim",
+  "description": "Search and ask specialized document collections (ACL Anthology and more) — get verbatim cited answers via the Verbatim platform.",
+  "version": "2.0.0",
   "author": {
     "name": "KR Labs",
     "url": "https://krlabs.eu"
   },
   "homepage": "https://verbatim.krlabs.eu",
-  "repository": "https://github.com/adaamko/verbatim-acl-skill",
+  "repository": "https://github.com/KRLabsOrg/verbatim-skill",
   "license": "Apache-2.0"
 }

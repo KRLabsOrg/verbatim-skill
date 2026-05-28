@@ -1,13 +1,13 @@
-Turn any question + context documents into a verbatim answer with exact citations. Not limited to ACL papers — works with any text.
+Turn any question + context documents into a verbatim answer with exact citations. Collection-agnostic — works with any text you supply.
 
-Requires `VERBATIM_API_KEY` environment variable. Get one at https://verbatim.krlabs.eu
+Requires `VERBATIM_API_KEY` environment variable. Get one at https://verbatim.krlabs.eu/api-keys
 
 ## Usage
 
 Use this curl command to send a question with context documents:
 
 ```bash
-curl -s -X POST "https://verbatim.krlabs.eu/api/transform/verbatim" \
+curl -s -X POST "https://verbatim.krlabs.eu/api/v1/transform/verbatim" \
   -H "Authorization: Bearer $VERBATIM_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
